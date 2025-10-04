@@ -1,0 +1,11 @@
+{
+  "name": "@ai-dev-platform/config",
+  "version": "1.0.0",
+  "main": "./src/constants.ts",
+  "types": "./src/constants.ts",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint src/",
+    "clean": "rm -rf dist"
+  }
+}
