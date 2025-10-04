@@ -476,8 +476,7 @@ MIT License - see [LICENSE](LICENSE) for full terms.
 - [xAI](https://x.ai/) for Grok-4
 - [OpenRouter](https://openrouter.ai/) for model access
 - [Vercel](https://vercel.com/) & [Railway](https://railway.app/) for deployment
-- [shadcn/ui](https://ui.shadcn.com/) for accessible components
-- Community contributors (see [CREDITS.md](CREDITS.md))
+- [shadcn/ui](https://ui.shadcn.com/) for accessible components)
 
 ## 🆘 Support
 
@@ -486,7 +485,7 @@ MIT License - see [LICENSE](LICENSE) for full terms.
 - **Discord**: [Join Community](https://discord.gg/aidevplatform)
 - **Twitter**: [@AIDevPlatform](https://twitter.com/aidevplatform)
 
-Built with ❤️ by the AI Dev Platform team using Next.js, FastAPI, and Grok-4.
+Built with ❤️ by Suryanshu Nabheet using Next.js, FastAPI, and Grok-4.
 
 ---
 

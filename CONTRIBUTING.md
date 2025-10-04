@@ -1,34 +1,100 @@
 # Contributing to AI Dev Platform
 
-Thank you for your interest in contributing! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to AI Dev Platform! We welcome contributions from the community to help build a more powerful and accessible AI-powered development tool. This guide outlines the process for contributing, from reporting issues to submitting code changes.
+
+By participating, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Table of Contents
+- [Reporting Bugs](#reporting-bugs)
+- [Suggesting Enhancements](#suggesting-enhancements)
+- [Development Setup](#development-setup)
+- [Project Structure](#project-structure)
+- [Code Style and Standards](#code-style-and-standards)
+- [Testing](#testing)
+- [Pull Request Guidelines](#pull-request-guidelines)
+- [Commit Message Conventions](#commit-message-conventions)
+- [Security Policy](#security-policy)
+- [Questions and Support](#questions-and-support)
+
+## Reporting Bugs
+
+Before reporting a bug, please check the [existing issues](https://github.com/yourusername/ai-dev-platform/issues) to avoid duplicates.
+
+1. Search for similar issues.
+2. If none exist, create a new issue with:
+   - A clear, descriptive title (e.g., "Backend: Chat endpoint fails with invalid OpenRouter key").
+   - Steps to reproduce the issue.
+   - Expected vs. actual behavior.
+   - Environment details (OS, Node/Python versions, browser).
+   - Screenshots or logs if applicable.
+   - Minimal reproduction code or steps.
+
+Label it as `bug` for triage.
+
+## Suggesting Enhancements
+
+We appreciate feature suggestions! To propose an enhancement:
+
+1. Open a new issue using the "Feature request" template.
+2. Describe the use case and why it's valuable.
+3. Suggest an implementation approach if possible.
+4. Reference any related discussions or external resources.
+
+Enhancements are prioritized based on community interest and alignment with our roadmap.
 
 ## Development Setup
 
-1. **Prerequisites**
-   - Node.js 18+ and npm 9+
-   - Docker and Docker Compose
-   - Python 3.11+
-   - Git
+To get started with local development:
 
-2. **Clone and Install**
-   \`\`\`bash
-   git clone https://github.com/yourusername/ai-dev-platform.git
-   cd ai-dev-platform
-   npm install
-   \`\`\`
+### Prerequisites
+- Node.js ≥18.0.0 and npm ≥9.0.0
+- Python ≥3.11
+- Docker and Docker Compose (for PostgreSQL and Redis)
+- Git
 
-3. **Environment Setup**
-   \`\`\`bash
-   cp .env.example .env
-   # Edit .env with your API keys
-   \`\`\`
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Suryanshu-Nabheet/Ai_Bot.git
+cd ai-bot
+```
 
-4. **Start Services**
-   \`\`\`bash
-   npm run docker:up
-   npm run db:migrate
-   npm run dev
-   \`\`\`
+### 2. Install Dependencies
+```bash
+# Install root and frontend dependencies
+npm install
+
+# Install backend dependencies
+cd apps/backend && pip install -r requirements.txt && cd ../..
+```
+
+### 3. Environment Configuration
+```bash
+cp .env.example .env
+```
+Edit `.env` with your keys (see [Environment Variables in README.md](#-environment-variables) for details). For testing, use mock values or set up test accounts for GitHub OAuth and OpenRouter.
+
+### 4. Start Services
+```bash
+# Launch PostgreSQL and Redis via Docker
+npm run docker:up
+
+# Run database migrations
+npm run db:migrate
+
+# Seed initial data (optional, for testing)
+npm run db:seed
+
+# Start development servers
+npm run dev
+```
+
+Access the app at:
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8000
+- **API Docs**: http://localhost:8000/docs (Swagger UI)
+
+### 5. Verification
+Run `npm run lint && npm run test` to ensure everything is set up correctly.
 
 ## Project Structure
 
@@ -239,29 +305,104 @@ ai-bot
 
 ## Testing
 
-- **Unit Tests**: `npm run test`
-- **E2E Tests**: `npm run test:e2e`
-- Write tests for new features and bug fixes
+Comprehensive tests ensure reliability. Write tests for all new features and bug fixes.
 
-## Pull Request Process
+- **Unit Tests**:
+  - Frontend: Vitest (run `npm run test:frontend`).
+  - Backend: Pytest (run `cd apps/backend && pytest`).
+  - Aim for >80% coverage.
 
-1. Create a feature branch: `git checkout -b feature/your-feature`
-2. Make your changes with clear, atomic commits
-3. Add tests for new functionality
-4. Update documentation as needed
-5. Run linters and tests: `npm run lint && npm run test`
-6. Push and create a PR with a clear description
+- **Integration Tests**:
+  - API endpoints: Use `pytest` with `httpx` for FastAPI.
+  - Database: Test with in-memory SQLite for speed.
 
-## Commit Messages
+- **E2E Tests**:
+  - Frontend: Playwright (run `npm run test:e2e`).
+  - Cover user flows (e.g., chat to deployment).
 
-Follow conventional commits:
-- `feat:` New feature
-- `fix:` Bug fix
-- `docs:` Documentation changes
-- `test:` Test additions or changes
-- `refactor:` Code refactoring
-- `chore:` Maintenance tasks
+Run all tests:
+```bash
+npm run test
+```
 
-## Questions?
+Add tests in the appropriate `tests/` directory. Use mocks for external services (e.g., OpenRouter, GitHub API).
 
-Open an issue or reach out to the maintainers.
+## Pull Request Guidelines
+
+1. **Branching**:
+   - Create a feature branch from `main`: `git checkout -b feat/your-feature` or `fix/your-bug`.
+   - Keep branches small and focused (one PR per feature/bug).
+
+2. **Making Changes**:
+   - Write clear, atomic commits.
+   - Ensure code passes all checks (lint, test, type-check).
+   - Update documentation (README, API docs) if needed.
+
+3. **Submitting the PR**:
+   - Push: `git push origin feat/your-feature`.
+   - Open a PR against `main` with:
+     - A descriptive title (e.g., "feat: Add Vercel deployment support").
+     - Detailed description: What/Why/How.
+     - Link to related issue (e.g., "Closes #123").
+     - Screenshots/GIFs for UI changes.
+   - Reference Conventional Commits in the title.
+
+4. **Review Process**:
+   - PRs are reviewed by maintainers.
+   - Address feedback iteratively.
+   - Once approved and tests pass, it will be merged.
+
+We use squash-merge for clean history. Rebase if needed to resolve conflicts.
+
+## Commit Message Conventions
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/) for semantic versioning and changelogs:
+
+- `feat:` A new feature (e.g., `feat: integrate Grok-4 streaming`).
+- `fix:` A bug fix (e.g., `fix: resolve OAuth callback URL mismatch`).
+- `docs:` Documentation only (e.g., `docs: update deployment guide`).
+- `style:` Formatting, no code changes.
+- `refactor:` Code changes without new features/fixes.
+- `test:` Adding/updating tests.
+- `chore:` Maintenance (e.g., dependency updates).
+- `ci:` CI/CD pipeline changes.
+- `perf:` Performance improvements.
+
+Scope (optional): `feat(ide): add Monaco diff viewer`.
+
+Body: Explain "why" and "what changed". Footer: Reference issues/tickets.
+
+Example:
+```
+feat(backend): add rate limiting to chat endpoint
+
+Implement Redis-based rate limiting to prevent API abuse.
+Uses 60 req/min per user.
+
+Closes #456
+```
+
+## Security Policy
+
+Security is a top priority. If you discover a vulnerability:
+
+1. Do not open a public issue.
+2. Report privately: security@aidevplatform.com or via GitHub's private vulnerability reporting.
+3. Include reproduction steps and impact assessment.
+
+We follow [OWASP guidelines](https://owasp.org/) and will credit responsible disclosures. See our [Security Policy](SECURITY.md) for details.
+
+## Questions and Support
+
+- **General Questions**: Open a [discussion](https://github.com/yourusername/ai-dev-platform/discussions).
+- **Issues**: Use [GitHub Issues](https://github.com/yourusername/ai-dev-platform/issues).
+- **Community**: Join our [Discord](https://discord.gg/aidevplatform) or follow [@AIDevPlatform](https://twitter.com/aidevplatform).
+- **Maintainers**: Tag `@maintainer` in issues/PRs.
+
+For sponsorship or partnerships, email contact@aidevplatform.com.
+
+## Acknowledgments
+
+Contributions from the open-source community make AI Dev Platform possible. See [CREDITS.md](CREDITS.md) for a full list.
+
+Happy contributing! 🚀
