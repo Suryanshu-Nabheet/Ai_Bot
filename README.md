@@ -480,10 +480,8 @@ MIT License - see [LICENSE](LICENSE) for full terms.
 
 ## 🆘 Support
 
-- **Docs**: [docs.aidevplatform.com](https://docs.aidevplatform.com)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/ai-dev-platform/issues)
-- **Discord**: [Join Community](https://discord.gg/aidevplatform)
-- **Twitter**: [@AIDevPlatform](https://twitter.com/aidevplatform)
+- **Issues**: [GitHub Issues](https://github.com/Suryanshu-Nabheet/Ai_Bot/issues))
+- **Twitter**: [@Suryanshu Nabheet](https://x.com/SuryanshuXDev)
 
 Built with ❤️ by Suryanshu Nabheet using Next.js, FastAPI, and Grok-4.
 
