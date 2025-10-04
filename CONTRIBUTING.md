@@ -1,6 +1,6 @@
-# Contributing to AI Dev Platform
+# Contributing to Ai Bot 
 
-Thank you for your interest in contributing to AI Dev Platform! We welcome contributions from the community to help build a more powerful and accessible AI-powered development tool. This guide outlines the process for contributing, from reporting issues to submitting code changes.
+Thank you for your interest in contributing to Ai Bot ! We welcome contributions from the community to help build a more powerful and accessible AI-powered development tool. This guide outlines the process for contributing, from reporting issues to submitting code changes.
 
 By participating, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
 
@@ -403,6 +403,6 @@ For sponsorship or partnerships, email contact@aidevplatform.com.
 
 ## Acknowledgments
 
-Contributions from the open-source community make AI Dev Platform possible. See [CREDITS.md](CREDITS.md) for a full list.
+Contributions from the open-source community make Ai Bot  possible. See [CREDITS.md](CREDITS.md) for a full list.
 
 Happy contributing! 🚀

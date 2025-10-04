@@ -34,19 +34,19 @@ async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     
-    print(f"🚀 AI Dev Platform API started on {settings.BACKEND_URL}")
+    print(f"🚀 Ai Bot  API started on {settings.BACKEND_URL}")
     print(f"📚 Docs available at {settings.BACKEND_URL}/docs")
     
     yield
     
     # Shutdown: Cleanup
     await engine.dispose()
-    print("👋 AI Dev Platform API shutting down")
+    print("👋 Ai Bot  API shutting down")
 
 
 # Create FastAPI application
 app = FastAPI(
-    title="AI Dev Platform API",
+    title="Ai Bot  API",
     description="Production-grade AI developer platform with Grok-4 integration",
     version="1.0.0",
     docs_url="/docs",
@@ -84,7 +84,7 @@ app.include_router(sandbox.router, prefix="/api/sandbox", tags=["Sandbox"])
 async def root():
     """Root endpoint with API information."""
     return {
-        "name": "AI Dev Platform API",
+        "name": "Ai Bot  API",
         "version": "1.0.0",
         "status": "operational",
         "docs": f"{settings.BACKEND_URL}/docs",

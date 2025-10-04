@@ -59,7 +59,7 @@ export function Terminal({ projectId }: TerminalProps) {
     fitAddonRef.current = fitAddon
 
     // Welcome message
-    term.writeln("AI Dev Platform Terminal")
+    term.writeln("Ai Bot  Terminal")
     term.writeln("Project: " + projectId)
     term.writeln("")
     term.write("$ ")

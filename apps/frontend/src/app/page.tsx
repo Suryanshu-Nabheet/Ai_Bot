@@ -11,7 +11,7 @@ export default function HomePage() {
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
             <Code2 className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">AI Dev Platform</span>
+            <span className="text-xl font-bold">Ai Bot </span>
           </div>
           <nav className="flex items-center gap-4">
             <Link href="/docs" className="text-sm text-muted-foreground hover:text-foreground">
@@ -137,7 +137,7 @@ export default function HomePage() {
       <footer className="border-t bg-background">
         <div className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between">
-            <p className="text-sm text-muted-foreground">© 2025 AI Dev Platform. Built with Next.js and Grok-4.</p>
+            <p className="text-sm text-muted-foreground">© 2025 Ai Bot . Built with Next.js and Grok-4.</p>
             <div className="flex gap-4">
               <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
                 Privacy

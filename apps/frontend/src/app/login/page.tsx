@@ -16,7 +16,7 @@ export default function LoginPage() {
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
             <Code2 className="h-6 w-6 text-primary" />
           </div>
-          <CardTitle className="text-2xl">Welcome to AI Dev Platform</CardTitle>
+          <CardTitle className="text-2xl">Welcome to Ai Bot </CardTitle>
           <CardDescription>Sign in to start building with AI</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Demo script to showcase the AI Dev Platform
+ * Demo script to showcase the Ai Bot 
  * Creates a sample project via the chat API and deploys it
  */
 
@@ -11,7 +11,7 @@ const API_URL = process.env.BACKEND_URL || "http://localhost:8000"
 const DEMO_TOKEN = process.env.DEMO_TOKEN || "demo-token"
 
 async function runDemo() {
-  console.log("🚀 AI Dev Platform Demo\n")
+  console.log("🚀 Ai Bot  Demo\n")
 
   try {
     // Step 1: Create a chat session

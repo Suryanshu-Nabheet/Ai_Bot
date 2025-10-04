@@ -10,7 +10,7 @@
 
 ## 🚀 Overview
 
-AI Dev Platform is an open-source tool that empowers developers to create, edit, and deploy full-stack applications using natural language interactions with Grok-4. It combines a conversational AI interface with a robust IDE, enabling rapid prototyping and production-ready development.
+Ai Bot  is an open-source tool that empowers developers to create, edit, and deploy full-stack applications using natural language interactions with Grok-4. It combines a conversational AI interface with a robust IDE, enabling rapid prototyping and production-ready development.
 
 Key differentiators:
 - **Conversational Development**: Generate code, plans, and architectures via chat.
@@ -107,7 +107,7 @@ Access the app at:
 #### GitHub OAuth
 1. Visit [GitHub Developer Settings](https://github.com/settings/developers).
 2. Create a new OAuth App:
-   - **Name**: AI Dev Platform
+   - **Name**: Ai Bot 
    - **Homepage URL**: http://localhost:3000
    - **Callback URL**: http://localhost:3000/api/auth/callback/github
 3. Add `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` to `.env`.

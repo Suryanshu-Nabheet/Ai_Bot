@@ -1,6 +1,6 @@
 # Complete Setup Guide
 
-This guide walks you through setting up the AI Dev Platform from scratch.
+This guide walks you through setting up the Ai Bot  from scratch.
 
 ## Step-by-Step Setup
 
@@ -118,7 +118,7 @@ This will start:
 1. Go to https://github.com/settings/developers
 2. Click "OAuth Apps" → "New OAuth App"
 3. Fill in:
-   - **Application name**: AI Dev Platform (Local Dev)
+   - **Application name**: Ai Bot  (Local Dev)
    - **Homepage URL**: `http://localhost:3000`
    - **Authorization callback URL**: `http://localhost:3000/api/auth/callback/github`
 4. Click "Register application"

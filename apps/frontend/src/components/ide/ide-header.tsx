@@ -30,7 +30,7 @@ export function IDEHeader({ projectId }: IDEHeaderProps) {
       <div className="flex items-center gap-4">
         <Link href="/dashboard" className="flex items-center gap-2 hover:opacity-80">
           <Code2 className="h-5 w-5 text-primary" />
-          <span className="font-semibold">AI Dev Platform</span>
+          <span className="font-semibold">Ai Bot </span>
         </Link>
         <span className="text-sm text-muted-foreground">Project: {projectId}</span>
       </div>

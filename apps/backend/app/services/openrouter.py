@@ -63,7 +63,7 @@ class OpenRouterClient:
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json",
             "HTTP-Referer": settings.BACKEND_URL,
-            "X-Title": "AI Dev Platform",
+            "X-Title": "Ai Bot ",
         }
         
         if stream:

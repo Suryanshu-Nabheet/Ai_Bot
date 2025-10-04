@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "AI Dev Platform - Build with Grok-4",
+  title: "Ai Bot  - Build with Grok-4",
   description: "Production-grade AI developer platform with Monaco IDE and deployment automation",
 }
 
