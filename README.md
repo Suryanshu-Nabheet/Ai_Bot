@@ -1,335 +1,503 @@
-# AI Dev Platform
+# AI Bot
 
-> Production-grade AI developer platform powered by xAI Grok-4 via OpenRouter. Build full-stack applications through conversational AI with an integrated Monaco IDE, live preview, Git integration, and one-click deployment to Vercel/Netlify.
+> A production-grade AI-powered developer platform leveraging xAI's Grok-4 via OpenRouter. Build full-stack applications conversationally with an integrated Monaco IDE, live preview, Git integration, and seamless deployment to Vercel or Netlify.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
-![Python](https://img.shields.io/badge/python-3.11-blue.svg)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yourusername/ai-dev-platform/blob/main/LICENSE)
+[![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+[![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black.svg?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115.0-yellow.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 
-## Features
+## 🚀 Overview
 
-- **AI-Powered Code Generation**: Chat with Grok-4 to generate production-ready code
-- **Monaco IDE**: Full-featured code editor with syntax highlighting and IntelliSense
-- **Live Preview**: See your changes instantly with hot reload
-- **Terminal**: Embedded xterm.js terminal for running commands
-- **Git Integration**: Full GitHub integration (init, commit, push, PR, merge)
-- **One-Click Deploy**: Deploy to Vercel or Netlify with a single click
-- **Authentication**: GitHub OAuth + Google OAuth
-- **Production Ready**: TypeScript, linting, tests, CI/CD included
+AI Dev Platform is an open-source tool that empowers developers to create, edit, and deploy full-stack applications using natural language interactions with Grok-4. It combines a conversational AI interface with a robust IDE, enabling rapid prototyping and production-ready development.
 
-## Tech Stack
+Key differentiators:
+- **Conversational Development**: Generate code, plans, and architectures via chat.
+- **Integrated Workflow**: Seamless transition from ideation to deployment.
+- **Extensible Architecture**: Modular design for custom integrations.
+
+## ✨ Features
+
+- **AI-Powered Code Generation**: Leverage Grok-4 for generating production-ready code, task plans, and debugging assistance.
+- **Monaco IDE**: VS Code-like editor with syntax highlighting, IntelliSense, and multi-language support.
+- **Live Preview**: Real-time hot reload for frontend changes with iframe-based previews.
+- **Embedded Terminal**: xterm.js-powered terminal for executing commands directly in the browser.
+- **Git Integration**: Full GitHub workflow support (init, commit, branch, PR, merge) with OAuth authentication.
+- **One-Click Deployment**: Automated deployments to Vercel, Netlify, or custom providers.
+- **Authentication & Security**: Secure GitHub/Google OAuth with JWT tokens and rate limiting.
+- **Production-Grade**: Includes TypeScript, ESLint/Prettier, comprehensive tests, and CI/CD pipelines.
+
+## 🛠 Tech Stack
 
 ### Frontend
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4
-- **UI Components**: shadcn/ui
-- **Code Editor**: Monaco Editor
+- **Framework**: Next.js 15 (App Router) with TypeScript
+- **Styling**: Tailwind CSS v4 + shadcn/ui components
+- **Editor**: Monaco Editor (from VS Code)
 - **Terminal**: xterm.js
-- **State Management**: Zustand + SWR
+- **State Management**: Zustand for local state + SWR for data fetching
+- **Build Tool**: Turborepo for monorepo management
 
 ### Backend
-- **Framework**: FastAPI (Python)
-- **Database**: PostgreSQL
-- **Cache**: Redis
-- **AI**: OpenRouter API (Grok-4)
-- **Authentication**: JWT + OAuth
-- **API Client**: httpx (async)
+- **Framework**: FastAPI (Python 3.11) with async support
+- **Database**: PostgreSQL (via SQLAlchemy + Alembic)
+- **Cache**: Redis for session management and rate limiting
+- **AI Integration**: OpenRouter API for Grok-4 access
+- **Auth**: JWT + OAuth2 (GitHub/Google)
+- **HTTP Client**: httpx for async requests
+- **Testing**: Pytest with coverage
 
 ### Infrastructure
-- **Containerization**: Docker + Docker Compose
-- **CI/CD**: GitHub Actions
+- **Containerization**: Docker + Docker Compose for local dev
+- **CI/CD**: GitHub Actions for linting, testing, and deployment
 - **Deployment**: Vercel (frontend) + Railway/Fly.io (backend)
-- **Monitoring**: Sentry + Prometheus
+- **Monitoring**: Sentry for error tracking + Prometheus for metrics
+- **Security**: OWASP best practices, input sanitization, and encrypted env vars
 
-## Quick Start
+## 📋 Quick Start
 
 ### Prerequisites
-
-- Node.js 18+ and npm 9+
-- Python 3.11+
-- Docker and Docker Compose
+- Node.js ≥18.0.0 and npm ≥9.0.0
+- Python ≥3.11
+- Docker and Docker Compose (for DB/Redis)
 - Git
 
-### 1. Clone and Install
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Suryanshu-Nabheet/Ai_Bot.git
+cd ai-bot
+```
 
-\`\`\`bash
-git clone https://github.com/yourusername/ai-dev-platform.git
-cd ai-dev-platform
+### 2. Install Dependencies
+```bash
+# Install root and frontend dependencies
 npm install
-\`\`\`
 
-### 2. Environment Setup
+# Install backend dependencies
+cd apps/backend && pip install -r requirements.txt && cd ../..
+```
 
-\`\`\`bash
+### 3. Environment Configuration
+```bash
 cp .env.example .env
-\`\`\`
+```
+Edit `.env` with your keys (see [Environment Variables](#-environment-variables) for details).
 
-Edit `.env` and add your API keys:
-
-\`\`\`env
-# Required
-OPENROUTER_API_KEY=your_openrouter_api_key
-GITHUB_CLIENT_ID=your_github_client_id
-GITHUB_CLIENT_SECRET=your_github_client_secret
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/aidevplatform
-REDIS_URL=redis://localhost:6379
-JWT_SECRET=your_jwt_secret_here
-
-# Optional
-VERCEL_TOKEN=your_vercel_token
-NETLIFY_TOKEN=your_netlify_token
-\`\`\`
-
-### 3. Start Services
-
-\`\`\`bash
-# Start PostgreSQL and Redis
+### 4. Start Services
+```bash
+# Launch PostgreSQL and Redis via Docker
 npm run docker:up
 
 # Run database migrations
 npm run db:migrate
 
-# Seed demo data
+# Seed initial data (optional)
 npm run db:seed
 
 # Start development servers
 npm run dev
-\`\`\`
+```
 
-The application will be available at:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8000
-- API Docs: http://localhost:8000/docs
+Access the app at:
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8000
+- **API Docs**: http://localhost:8000/docs (Swagger UI)
 
-### 4. Create GitHub OAuth App
-
-1. Go to GitHub Settings → Developer settings → OAuth Apps
-2. Click "New OAuth App"
-3. Fill in the details:
-   - **Application name**: AI Dev Platform (Local)
+### 5. Setup Authentication
+#### GitHub OAuth
+1. Visit [GitHub Developer Settings](https://github.com/settings/developers).
+2. Create a new OAuth App:
+   - **Name**: AI Dev Platform
    - **Homepage URL**: http://localhost:3000
-   - **Authorization callback URL**: http://localhost:3000/api/auth/callback/github
-4. Copy the Client ID and Client Secret to your `.env` file
+   - **Callback URL**: http://localhost:3000/api/auth/callback/github
+3. Add `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` to `.env`.
 
-### 5. Get OpenRouter API Key
+#### OpenRouter API Key
+1. Sign up at [OpenRouter](https://openrouter.ai).
+2. Generate a key in the Keys section.
+3. Set `OPENROUTER_API_KEY` in `.env`.
 
-1. Sign up at https://openrouter.ai
-2. Go to Keys section
-3. Create a new API key
-4. Add it to your `.env` file as `OPENROUTER_API_KEY`
+## 💡 Usage
 
-## Usage
+### Creating a Project
+1. Open http://localhost:3000 and authenticate via GitHub.
+2. Click **New Project** to enter the chat interface.
+3. Describe your idea: e.g., "Build a task management app with React and Supabase."
+4. Approve the AI-generated plan.
+5. Let Grok-4 scaffold the code.
+6. Switch to the IDE for edits, preview changes, and deploy.
 
-### Create a Project via Chat
+### Deployment Workflow
+1. In the IDE, click **Deploy** in the toolbar.
+2. Choose Vercel/Netlify and authorize if needed.
+3. Deploy with one click—monitor progress in the UI.
 
-1. Navigate to http://localhost:3000
-2. Click "Get Started" and sign in with GitHub
-3. Click "New Project" to open the chat interface
-4. Describe your project: "Create a blog with Next.js and TypeScript"
-5. Review the generated task plan and approve
-6. Watch as the AI generates your code
-7. Open the IDE to edit and preview your project
+For advanced usage, refer to [docs.aidevplatform.com](https://docs.aidevplatform.com).
 
-### Deploy to Vercel
+## 📁 Project Structure
 
-1. Open your project in the IDE
-2. Click the "Deploy" button in the header
-3. Select "Vercel" as the provider
-4. Click "Deploy to Vercel"
-5. Wait for deployment to complete
-6. Visit your live URL
+```
+ai-bot
+├─ .eslintrc.json
+├─ .prettierrc
+├─ CODE_OF_CONDUCT.md
+├─ CONTRIBUTING.md
+├─ README.md
+├─ app
+│  ├─ globals.css
+│  ├─ layout.tsx
+│  └─ page.tsx
+├─ apps
+│  ├─ backend
+│  │  ├─ Dockerfile
+│  │  ├─ alembic.ini
+│  │  ├─ app
+│  │  │  ├─ api
+│  │  │  │  ├─ dependencies.py
+│  │  │  │  └─ v1
+│  │  │  │     ├─ auth.py
+│  │  │  │     ├─ chat.py
+│  │  │  │     ├─ deploy.py
+│  │  │  │     ├─ generate.py
+│  │  │  │     ├─ git.py
+│  │  │  │     ├─ projects.py
+│  │  │  │     └─ sandbox.py
+│  │  │  ├─ core
+│  │  │  │  ├─ config.py
+│  │  │  │  ├─ database.py
+│  │  │  │  ├─ redis.py
+│  │  │  │  └─ security.py
+│  │  │  ├─ main.py
+│  │  │  ├─ middleware
+│  │  │  │  ├─ logging.py
+│  │  │  │  └─ rate_limit.py
+│  │  │  ├─ models
+│  │  │  │  └─ user.py
+│  │  │  └─ services
+│  │  │     ├─ github.py
+│  │  │     ├─ netlify.py
+│  │  │     ├─ openrouter.py
+│  │  │     ├─ task_planner.py
+│  │  │     └─ vercel.py
+│  │  ├─ pytest.ini
+│  │  ├─ requirements.txt
+│  │  ├─ scripts
+│  │  │  └─ seed.py
+│  │  └─ tests
+│  │     └─ test_openrouter.py
+│  └─ frontend
+│     ├─ Dockerfile
+│     ├─ Dockerfile.dev
+│     ├─ next.config.mjs
+│     ├─ package.json
+│     ├─ src
+│     │  ├─ app
+│     │  │  ├─ chat
+│     │  │  │  └─ page.tsx
+│     │  │  ├─ dashboard
+│     │  │  │  └─ page.tsx
+│     │  │  ├─ deploy
+│     │  │  │  └─ [projectId]
+│     │  │  │     └─ page.tsx
+│     │  │  ├─ git
+│     │  │  │  └─ [projectId]
+│     │  │  │     └─ page.tsx
+│     │  │  ├─ globals.css
+│     │  │  ├─ ide
+│     │  │  │  └─ [projectId]
+│     │  │  │     └─ page.tsx
+│     │  │  ├─ layout.tsx
+│     │  │  ├─ login
+│     │  │  │  └─ page.tsx
+│     │  │  └─ page.tsx
+│     │  ├─ components
+│     │  │  ├─ git
+│     │  │  │  └─ git-panel.tsx
+│     │  │  ├─ ide
+│     │  │  │  ├─ code-editor.tsx
+│     │  │  │  ├─ file-tree.tsx
+│     │  │  │  ├─ ide-header.tsx
+│     │  │  │  ├─ preview.tsx
+│     │  │  │  └─ terminal.tsx
+│     │  │  ├─ providers
+│     │  │  │  └─ auth-provider.tsx
+│     │  │  └─ ui
+│     │  │     ├─ progress.tsx
+│     │  │     ├─ radio-group.tsx
+│     │  │     └─ resizable.tsx
+│     │  ├─ hooks
+│     │  │  ├─ use-auth.ts
+│     │  │  └─ use-projects.ts
+│     │  └─ lib
+│     │     ├─ api.ts
+│     │     └─ utils.ts
+│     └─ tsconfig.json
+├─ components
+│  ├─ theme-provider.tsx
+│  └─ ui
+│     ├─ accordion.tsx
+│     ├─ alert-dialog.tsx
+│     ├─ alert.tsx
+│     ├─ aspect-ratio.tsx
+│     ├─ avatar.tsx
+│     ├─ badge.tsx
+│     ├─ breadcrumb.tsx
+│     ├─ button-group.tsx
+│     ├─ button.tsx
+│     ├─ calendar.tsx
+│     ├─ card.tsx
+│     ├─ carousel.tsx
+│     ├─ chart.tsx
+│     ├─ checkbox.tsx
+│     ├─ collapsible.tsx
+│     ├─ command.tsx
+│     ├─ context-menu.tsx
+│     ├─ dialog.tsx
+│     ├─ drawer.tsx
+│     ├─ dropdown-menu.tsx
+│     ├─ empty.tsx
+│     ├─ field.tsx
+│     ├─ form.tsx
+│     ├─ hover-card.tsx
+│     ├─ input-group.tsx
+│     ├─ input-otp.tsx
+│     ├─ input.tsx
+│     ├─ item.tsx
+│     ├─ kbd.tsx
+│     ├─ label.tsx
+│     ├─ menubar.tsx
+│     ├─ navigation-menu.tsx
+│     ├─ pagination.tsx
+│     ├─ popover.tsx
+│     ├─ progress.tsx
+│     ├─ radio-group.tsx
+│     ├─ resizable.tsx
+│     ├─ scroll-area.tsx
+│     ├─ select.tsx
+│     ├─ separator.tsx
+│     ├─ sheet.tsx
+│     ├─ sidebar.tsx
+│     ├─ skeleton.tsx
+│     ├─ slider.tsx
+│     ├─ sonner.tsx
+│     ├─ spinner.tsx
+│     ├─ switch.tsx
+│     ├─ table.tsx
+│     ├─ tabs.tsx
+│     ├─ textarea.tsx
+│     ├─ toast.tsx
+│     ├─ toaster.tsx
+│     ├─ toggle-group.tsx
+│     ├─ toggle.tsx
+│     ├─ tooltip.tsx
+│     ├─ use-mobile.tsx
+│     └─ use-toast.ts
+├─ components.json
+├─ docker-compose.yml
+├─ docs
+│  └─ SETUP_GUIDE.md
+├─ hooks
+│  ├─ use-mobile.ts
+│  └─ use-toast.ts
+├─ lib
+│  └─ utils.ts
+├─ next.config.mjs
+├─ package.json
+├─ packages
+│  ├─ config
+│  │  ├─ package.json
+│  │  ├─ src
+│  │  │  └─ constants.ts
+│  │  └─ tsconfig.json
+│  └─ types
+│     ├─ package.json
+│     ├─ src
+│     │  └─ index.ts
+│     └─ tsconfig.json
+├─ path
+│  └─ to
+│     └─ file.tsx
+├─ pnpm-lock.yaml
+├─ postcss.config.mjs
+├─ public
+│  ├─ placeholder-logo.png
+│  ├─ placeholder-logo.svg
+│  ├─ placeholder-user.jpg
+│  ├─ placeholder.jpg
+│  └─ placeholder.svg
+├─ scripts
+│  └─ demo.js
+├─ styles
+│  └─ globals.css
+├─ tsconfig.json
+└─ turbo.json
 
-## Project Structure
+```
 
-\`\`\`
-ai-dev-platform/
-├── apps/
-│   ├── frontend/              # Next.js frontend
-│   │   ├── src/
-│   │   │   ├── app/          # App router pages
-│   │   │   ├── components/   # React components
-│   │   │   ├── hooks/        # Custom hooks
-│   │   │   └── lib/          # Utilities
-│   │   └── package.json
-│   └── backend/              # FastAPI backend
-│       ├── app/
-│       │   ├── api/          # API routes
-│       │   ├── core/         # Core config
-│       │   ├── models/       # Database models
-│       │   ├── services/     # Business logic
-│       │   └── middleware/   # Middleware
-│       ├── tests/            # Tests
-│       └── requirements.txt
-├── packages/
-│   ├── types/                # Shared TypeScript types
-│   └── config/               # Shared configuration
-├── scripts/                  # Utility scripts
-├── .github/
-│   └── workflows/            # CI/CD workflows
-├── docker-compose.yml        # Local development
-├── turbo.json               # Turborepo config
-└── package.json             # Root package.json
-\`\`\`
+## 🧪 Development
 
-## Development
-
-### Run Tests
-
-\`\`\`bash
-# Run all tests
+### Running Tests
+```bash
+# All tests (frontend + backend)
 npm run test
 
-# Frontend tests only
-npm run test --workspace=apps/frontend
+# Frontend only (Vitest)
+npm run test:frontend
 
-# Backend tests only
-cd apps/backend && pytest
-\`\`\`
+# Backend only (Pytest)
+cd apps/backend && pytest -v
+```
 
-### Linting and Formatting
-
-\`\`\`bash
-# Lint all code
+### Linting & Formatting
+```bash
+# Lint (ESLint + Ruff)
 npm run lint
 
-# Format all code
+# Format (Prettier + Black)
 npm run format
-\`\`\`
 
-### Database Migrations
+# Type check
+npm run type-check
+```
 
-\`\`\`bash
-# Create a new migration
-cd apps/backend
-alembic revision --autogenerate -m "description"
+### Database Management
+```bash
+# New migration
+cd apps/backend && alembic revision --autogenerate -m "Add user projects"
 
-# Run migrations
+# Apply migrations
 npm run db:migrate
 
-# Rollback migration
-cd apps/backend
-alembic downgrade -1
-\`\`\`
+# Rollback
+cd apps/backend && alembic downgrade -1
+```
 
-## Deployment
+## 🚀 Deployment
 
-### Deploy Frontend to Vercel
-
-\`\`\`bash
-# Install Vercel CLI
+### Frontend (Vercel)
+```bash
 npm i -g vercel
-
-# Deploy
 cd apps/frontend
 vercel --prod
-\`\`\`
+```
 
-### Deploy Backend to Railway
-
-\`\`\`bash
-# Install Railway CLI
+### Backend (Railway)
+```bash
 npm i -g @railway/cli
-
-# Login and deploy
 railway login
+cd apps/backend
 railway up
-\`\`\`
+```
 
-## API Documentation
+For production, update env vars on the hosting platform and set up custom domains.
 
-### OpenRouter Integration
+## 🔑 Environment Variables
 
-The platform uses OpenRouter to access Grok-4. Example request:
+| Variable              | Description                          | Required |
+|-----------------------|--------------------------------------|----------|
+| `OPENROUTER_API_KEY` | OpenRouter API key for Grok-4       | Yes     |
+| `GITHUB_CLIENT_ID`   | GitHub OAuth Client ID              | Yes     |
+| `GITHUB_CLIENT_SECRET` | GitHub OAuth Client Secret        | Yes     |
+| `DATABASE_URL`       | PostgreSQL connection string        | Yes     |
+| `REDIS_URL`          | Redis connection string             | Yes     |
+| `JWT_SECRET`         | Secret for JWT signing              | Yes     |
+| `VERCEL_TOKEN`       | Vercel API token (optional)         | No      |
+| `NETLIFY_TOKEN`      | Netlify API token (optional)        | No      |
 
-\`\`\`python
+Generate `JWT_SECRET` with: `openssl rand -hex 32`.
+
+## 📚 API Documentation
+
+Explore endpoints at http://localhost:8000/docs.
+
+### Example: Chat with Grok-4
+```python
+# apps/backend/app/api/chat.py (simplified)
 import httpx
+from fastapi import APIRouter
 
-async def chat_with_grok():
+router = APIRouter()
+
+@router.post("/chat")
+async def chat_completion(request: ChatRequest):
     async with httpx.AsyncClient() as client:
         response = await client.post(
             "https://openrouter.ai/api/v1/chat/completions",
             headers={
-                "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-                "Content-Type": "application/json",
+                "Authorization": f"Bearer {settings.OPENROUTER_API_KEY}",
+                "HTTP-Referer": settings.ALLOWED_HOSTS[0],
+                "X-Title": settings.APP_NAME,
             },
             json={
                 "model": "xai/grok-beta",
-                "messages": [
-                    {"role": "user", "content": "Create a React component"}
-                ],
-                "stream": True,
-            }
+                "messages": request.messages,
+                "stream": request.stream,
+                "temperature": 0.7,
+            },
         )
-        return response
-\`\`\`
+    return response.json()
+```
 
-### Key Endpoints
+Key endpoints:
+- `POST /api/v1/chat` - Non-streaming chat
+- `POST /api/v1/chat/stream` - Streaming responses
+- `POST /api/v1/projects/generate` - AI project scaffolding
+- `POST /api/v1/git/{action}` - Git operations
+- `POST /api/v1/deploy/{provider}` - Deployment triggers
 
-- `POST /api/chat` - Send chat message
-- `POST /api/chat/stream` - Stream chat response
-- `POST /api/generate/plan` - Generate task plan
-- `POST /api/generate/execute` - Execute code generation
-- `POST /api/git/init` - Initialize GitHub repo
-- `POST /api/deploy/vercel` - Deploy to Vercel
+## 🔒 Security
 
-Full API documentation: http://localhost:8000/docs
+- **Input Sanitization**: All prompts validated and escaped before LLM submission.
+- **API Key Isolation**: Keys stored securely; never exposed in responses/logs.
+- **Rate Limiting**: Redis-based limits (e.g., 60 req/min per user).
+- **Auth**: HttpOnly cookies for JWT; CSRF protection.
+- **Code Execution**: Sandboxed via Docker with CPU/memory limits.
+- **Compliance**: Follows OWASP Top 10; regular audits encouraged.
 
-## Security
+Report vulnerabilities privately: security@aidevplatform.com.
 
-- All user prompts are sanitized before sending to LLM
-- API keys are never logged or exposed
-- Rate limiting per user (Redis-backed)
-- JWT tokens with HttpOnly cookies
-- Sandboxed code execution with resource limits
-- Environment variables encrypted at rest
+## 🤝 Contributing
 
-## Contributing
+We ❤️ contributions! Review [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+1. Fork the repo and create a feature branch: `git checkout -b feat/your-feature`.
+2. Commit changes: `git commit -m "feat: add your feature"`.
+3. Push: `git push origin feat/your-feature`.
+4. Open a PR with a clear description.
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'feat: add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
+Adopt [Conventional Commits](https://www.conventionalcommits.org/).
 
-## License
+## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE) for full terms.
 
-## Acknowledgments
+## 🙌 Acknowledgments
 
-- [xAI](https://x.ai) for Grok-4
-- [OpenRouter](https://openrouter.ai) for API access
-- [Vercel](https://vercel.com) for hosting
-- [shadcn/ui](https://ui.shadcn.com) for UI components
+- [xAI](https://x.ai/) for Grok-4
+- [OpenRouter](https://openrouter.ai/) for model access
+- [Vercel](https://vercel.com/) & [Railway](https://railway.app/) for deployment
+- [shadcn/ui](https://ui.shadcn.com/) for accessible components
+- Community contributors (see [CREDITS.md](CREDITS.md))
 
-## Support
+## 🆘 Support
 
-- Documentation: [docs.aidevplatform.com](https://docs.aidevplatform.com)
-- Issues: [GitHub Issues](https://github.com/yourusername/ai-dev-platform/issues)
-- Discord: [Join our community](https://discord.gg/aidevplatform)
+- **Docs**: [docs.aidevplatform.com](https://docs.aidevplatform.com)
+- **Issues**: [GitHub Issues](https://github.com/yourusername/ai-dev-platform/issues)
+- **Discord**: [Join Community](https://discord.gg/aidevplatform)
+- **Twitter**: [@AIDevPlatform](https://twitter.com/aidevplatform)
+
+Built with ❤️ by the AI Dev Platform team using Next.js, FastAPI, and Grok-4.
 
 ---
 
-Built with ❤️ using Next.js, FastAPI, and Grok-4
-\`\`\`
-
 ## Troubleshooting
 
-### Common Issues
+| Issue | Solution |
+|-------|----------|
+| Database connection failed | Ensure Docker is running: `npm run docker:up`. Check `DATABASE_URL`. |
+| Invalid OpenRouter key | Verify `OPENROUTER_API_KEY` in `.env`; test via curl. |
+| OAuth callback error | Confirm GitHub app callback: `http://localhost:3000/api/auth/callback/github`. |
+| Port conflict (3000/8000) | `lsof -ti:3000 | xargs kill -9` (macOS). |
 
-**Issue**: "Failed to connect to database"
-- **Solution**: Make sure PostgreSQL is running: `docker-compose up postgres`
+For persistent issues, provide logs when filing an issue.
 
-**Issue**: "OpenRouter API key invalid"
-- **Solution**: Check your `.env` file and ensure `OPENROUTER_API_KEY` is set correctly
-
-**Issue**: "GitHub OAuth callback failed"
-- **Solution**: Verify your GitHub OAuth app callback URL matches `http://localhost:3000/api/auth/callback/github`
-
-**Issue**: "Port 3000 already in use"
-- **Solution**: Kill the process using port 3000: `lsof -ti:3000 | xargs kill -9`
-
-For more help, open an issue on GitHub.
